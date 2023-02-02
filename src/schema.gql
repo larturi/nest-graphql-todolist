@@ -17,5 +17,15 @@ type Query {
 
   """Retorna un numero random entre cero y n (default = 10)"""
   randomFromZeroTo(to: Int): Int!
-  todos: [Todo!]!
+  findAll: [Todo!]!
+  findOne(id: Int!): Todo!
+}
+
+type Mutation {
+  createTodo(CreateTodoInput: CreateTodoInput!): Todo!
+}
+
+input CreateTodoInput {
+  """What needs to be done"""
+  description: String!
 }
