@@ -34,8 +34,8 @@ export class TodosService {
     return todo;
   }
 
-  update(updateTodoInput: UpdateTodoInput): Todo {
-    const { id, description, done } = updateTodoInput;
+  update(id: number, updateTodoInput: UpdateTodoInput): Todo {
+    const { description, done } = updateTodoInput;
     const todoToUpdate = this.findOne(id);
 
     if (description) todoToUpdate.description = description;
@@ -46,5 +46,11 @@ export class TodosService {
     });
 
     return todoToUpdate;
+  }
+
+  delete(id: number): boolean {
+    this.findOne(id);
+    this.todos = this.todos.filter((t) => t.id !== id);
+    return true;
   }
 }
