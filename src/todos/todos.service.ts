@@ -7,8 +7,21 @@ export class TodosService {
   private todos: Todo[] = [
     { id: 1, description: 'Piedra del alma', done: false },
     { id: 2, description: 'Piedra del espacio', done: true },
-    { id: 3, description: 'Piedra del poder', done: false },
+    { id: 3, description: 'Piedra del poder', done: true },
+    { id: 4, description: 'Piedra del tiempo', done: true },
   ];
+
+  getTotalTodos() {
+    return this.todos.length;
+  }
+
+  getCompletedTodos() {
+    return this.findAll({ status: true }).length;
+  }
+
+  getPendingTodos() {
+    return this.findAll({ status: false }).length;
+  }
 
   findAll(statusArgs: StatusArgs): Todo[] {
     const { status } = statusArgs;
