@@ -17,7 +17,7 @@ type Query {
 
   """Retorna un numero random entre cero y n (default = 10)"""
   randomFromZeroTo(to: Int): Int!
-  findAll: [Todo!]!
+  find(status: Boolean): [Todo!]!
   findOne(id: Int!): Todo!
 }
 

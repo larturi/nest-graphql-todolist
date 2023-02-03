@@ -3,13 +3,14 @@ import { TodosService } from './todos.service';
 import { Todo } from './entity/todo.entity';
 import { CreateTodoInput } from './dto/inputs/create-todo.input';
 import { UpdateTodoInput } from './dto/inputs/update-todo.input';
+import { StatusArgs } from './dto/args/status.args';
 
 @Resolver(() => Todo)
 export class TodosResolver {
   constructor(private readonly todoService: TodosService) {}
-  @Query(() => [Todo], { name: 'findAll' })
-  findAll(): Todo[] {
-    return this.todoService.findAll();
+  @Query(() => [Todo], { name: 'find' })
+  findAll(@Args() statusArgs: StatusArgs): Todo[] {
+    return this.todoService.findAll(statusArgs);
   }
 
   @Query(() => Todo, { name: 'findOne' })
